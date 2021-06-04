@@ -7,14 +7,22 @@ import com.sparta.week03.service.MemoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
 @RequiredArgsConstructor
-
+@RestController
 public class MemoController {
+
     private final MemoRepository memoRepository;
     private final MemoService memoService;
+
+    @GetMapping("/api/memos")
+    public List<Memo> getMemos() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime yesterday = LocalDateTime.now().minusDays(1);
+        return memoRepository.findAllByModifiedAtBetweenOrderByModifiedAtDesc(yesterday, now);
+    }
 
     @PostMapping("/api/memos")
     public Memo createMemo(@RequestBody MemoRequestDto requestDto) {
@@ -22,19 +30,15 @@ public class MemoController {
         return memoRepository.save(memo);
     }
 
-    @GetMapping("/api/memos")
-    public List<Memo> readMemo() {
-        return memoRepository.findAllByOrderByModifiedAtDesc();
-    }
-
     @PutMapping("/api/memos/{id}")
     public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
-        return memoService.update(id,requestDto);
-    }
-    @DeleteMapping("/api/memos/{id}")
-    public Long deleteMemo(@PathVariable Long id) {
-      memoRepository.deleteById(id);
-      return id;
+        memoService.update(id, requestDto);
+        return id;
     }
 
+    @DeleteMapping("/api/memos/{id}")
+    public Long deleteMemo(@PathVariable Long id) {
+        memoRepository.deleteById(id);
+        return id;
+    }
 }
