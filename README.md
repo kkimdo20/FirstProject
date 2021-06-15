@@ -3,7 +3,9 @@ TimeLine Service
 
 ## 첫번째 프로젝트
 사용언어 - JAVA
+
 프레임워크 - SpringBoot
+
 DevTool - 인텔리제이
 
 JPA를 활용해 API를 만들어 데이터를 읽고 쓰고 수정하고 삭제를 할 수 있는 타임라인 서비스를 만들었습니다.
