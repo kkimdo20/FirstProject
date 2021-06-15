@@ -2,7 +2,7 @@
 TimeLine Service
 
 ## 첫번째 프로젝트
-사용언어 - JAVA
+사용언어 - JAVA,HTML,CSS,JavaScript
 
 프레임워크 - SpringBoot
 
@@ -13,3 +13,4 @@ JPA를 활용해 API를 만들어 데이터를 읽고 쓰고 수정하고 삭제
 그리고, 24시간이 되면 자동으로 사라집니다.
 
 ## 작동 영상
+https://youtu.be/aHKrPZQnx8A
